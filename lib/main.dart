@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/pages/bottom_nav/bottom_nav.dart';
-import 'package:travel_app/pages/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());

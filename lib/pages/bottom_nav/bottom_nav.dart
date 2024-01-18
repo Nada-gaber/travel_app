@@ -11,9 +11,9 @@ class BottomNavigator extends StatefulWidget {
 
 class _BottomNavigatorState extends State<BottomNavigator> {
   List page = [
-    const MainPage(),
+     MainPage(),
     const Search(),
-    const MainPage(),
+     MainPage(),
     const Search(),
   ];
   int currentIndex = 0;
