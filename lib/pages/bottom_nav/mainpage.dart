@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/widgets/colors.dart';
+import 'package:travel_app/widgets/small_text.dart';
 import 'package:travel_app/widgets/text.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
-
+  Map<String, String> images = {
+    'balloning.png': 'Ballon',
+    'hiking.png': 'Hike',
+    'kayaking.png': 'Kayak',
+    'snorkling.png': 'Snork',
+  };
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -60,11 +66,74 @@ class MainPage extends StatelessWidget {
                       ]),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 300,
                 width: double.maxFinite,
-                child: TabBarView(
-                    children: [Text('hi'), Text('good morning'), Text('bye')]),
+                child: TabBarView(children: [
+                  ListView.builder(
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: const EdgeInsets.only(top: 15, right: 10),
+                        width: 175,
+                        height: 290,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('img/mountain.jpeg')),
+                        ),
+                      );
+                    },
+                  ),
+                  Text('good morning'),
+                  Text('bye')
+                ]),
+              ),
+              const SizedBox(
+                height: 17,
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextAppStyle(
+                      text: 'Explore more',
+                      size: 23,
+                    ),
+                    TextSmall(text: 'see all')
+                  ],
+                ),
+              ),
+              Container(
+                height: 80,
+                child: ListView.builder(
+                  itemCount: 4,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'img/${images.keys.elementAt(index)}')),
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                          ),
+                        ),
+                        Text(images.values.elementAt(index))
+                      ],
+                    );
+                  },
+                ),
               )
             ],
           ),
