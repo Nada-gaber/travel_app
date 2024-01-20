@@ -4,6 +4,7 @@ import 'package:travel_app/widgets/colors.dart';
 class Button extends StatelessWidget {
   bool? isResponsive;
   double? width;
+
   Button({Key? key, this.isResponsive = false, width = 250}) : super(key: key);
 
   @override
