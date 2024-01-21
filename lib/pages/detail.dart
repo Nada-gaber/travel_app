@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/widgets/button.dart';
 import 'package:travel_app/widgets/colors.dart';
 import 'package:travel_app/widgets/container_button.dart';
 import 'package:travel_app/widgets/small_text.dart';
@@ -13,6 +14,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   int gottanStar = 3;
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +69,7 @@ class _DetailsState extends State<Details> {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 5,
                       ),
                       Row(
                         children: [
@@ -82,7 +84,7 @@ class _DetailsState extends State<Details> {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       Row(
                         children: [
@@ -103,7 +105,7 @@ class _DetailsState extends State<Details> {
                         ],
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       TextAppStyle(
                         text: 'People',
@@ -113,17 +115,66 @@ class _DetailsState extends State<Details> {
                         text: 'Number of people in your group',
                         color: AppColors.mainTextColor,
                       ),
-                       const SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Wrap(
                         children: List.generate(5, (index) {
-                          return AppButton(
-                            color: Colors.black,
-                            text: (index + 1).toString(),
+                          return InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                            child: Container(
+                                margin: const EdgeInsets.all(5),
+                                child: AppButton(
+                                  color: selectedIndex == index
+                                      ? Colors.black87
+                                      : Colors.grey.withOpacity(0.3),
+                                  text: (index + 1).toString(),
+                                  textColor: selectedIndex == index
+                                      ? Colors.white
+                                      : Colors.black87,
+                                )),
                           );
                         }),
-                      )
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextAppStyle(
+                        text: 'Description',
+                        size: 20,
+                      ),
+                      TextSmall(
+                        text:
+                            'Mountaineering, is trying to reach, high points in mountainous areas, mainly for the joy and thrill of the climb. ',
+                        color: AppColors.mainTextColor,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Positioned(
+                          bottom: 10,
+                          left: 20,
+                          right: 20,
+                          child: Row(
+                            children: [
+                              AppButton(
+                                color: Colors.grey.shade200,
+                                textColor: AppColors.textColor1,
+                                isIcon: true,
+                                icon: Icons.favorite_border,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Button(
+                                isResponsive: true,
+                              ),
+                            ],
+                          ))
                     ],
                   ),
                 ),
