@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/pages/bottom_nav/bottom_nav.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/bloc/app_cuits.dart';
+import 'package:travel_app/bloc/bloc_logics.dart';
 import 'package:travel_app/pages/detail.dart';
 
 void main() {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Details(),
+      home: BlocProvider<AppCubits>(create: (context)=>AppCubits(), child: BlocLogics(),),
     );
   }
 }
